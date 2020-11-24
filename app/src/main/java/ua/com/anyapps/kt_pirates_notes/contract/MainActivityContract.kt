@@ -1,7 +1,7 @@
 package ua.com.anyapps.kt_pirates_notes.contract
 
-interface SplashScreenContract {
-    interface Repository{
+interface MainActivityContract {
+    /*interface Repository{
         fun insert(user: User)
         fun getAll(): LiveData<List<User>>
         fun delete(user: User)
@@ -28,5 +28,5 @@ interface SplashScreenContract {
     https://github.com/epicprivacybrowseri/kt_pirates_notes/tree/master/app/src/main/java/ua/com/anyapps/kt_pirates_notes
     https://levelup.gitconnected.com/a-tutorial-on-building-a-splash-screen-with-kotlin-in-android-studio-dc647cd52f9b
     https://www.geeksforgeeks.org/how-to-create-a-splash-screen-in-android-using-kotlin/
-    https://medium.com/@karenmartirosyan_64397/how-to-create-a-clean-splash-screen-with-mvvm-pattern-kotlin-coroutines-328e579f3524
+    https://medium.com/@karenmartirosyan_64397/how-to-create-a-clean-splash-screen-with-mvvm-pattern-kotlin-coroutines-328e579f3524*/
 }

@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">kt_pirates_notes</string>
+    <!-- splash screen -->
+    <string name="app_name_text">Pirates Notes</string>
+    <string name="app_copyright">(с) All right Reserved.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- main activity -->
+    <string name="btn_list_of_notes_text">Notes</string>
+    <string name="btn_list_add_note_text">Add</string>
 </resources>
