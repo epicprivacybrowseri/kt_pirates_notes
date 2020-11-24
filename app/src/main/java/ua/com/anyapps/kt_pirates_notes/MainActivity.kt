@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import android.view.WindowManager
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -12,7 +13,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity(){
     val TAG: String = "debapp"
     lateinit var host: NavHostFragment
     lateinit var navController: NavController
@@ -31,25 +32,32 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 dfgfdg*/
         /*val bottomNav = findViewById<BottomNavigationView>(R.id.notes_list_bottom_menu)
         bottomNav?.setupWithNavController(navController)*/
+        //notes_list_bottom_menu.setOnNavigationItemSelectedListener(this)
 
     }
 
 
-    fun btnClick(view: View) {
+    /*fun btnClick(view: View) {
         navController.navigate(R.id.addNoteFragment)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.nav_current_workout -> {
-                i.setClass(this, CurrentWorkoutActivity::class.java)
-                startActivity(i)
+            R.id.listOfNotesFragment -> {
+                Log.d(TAG, "List fragment")
+                //getSupportActionBar()?.show()
             }
-            R.id.nav_log -> {
-                //similarly start activity with Intent
+            R.id.addNoteFragment -> {
+                Log.d(TAG, "Add fragment")
+                //getSupportActionBar()?.hide()
+                notes_list_bottom_menu.setSelectedItemId(R.id.addNoteFragment);
             }
-            else ->super.onOptionsItemSelected(item)
+            else -> {
+                //getSupportActionBar()?.show()
+                super.onOptionsItemSelected(item)
+            }
         }
+        //Log.d(TAG, "1111111")
         return true
-    }
+    }*/
 }

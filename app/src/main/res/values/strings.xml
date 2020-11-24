@@ -8,4 +8,7 @@
     <!-- main activity -->
     <string name="btn_list_of_notes_text">Notes</string>
     <string name="btn_list_add_note_text">Add</string>
+    <!-- add note fragment -->
+    <string name="title_input_hint">Title</string>
+    <string name="text_input_hint">Text</string>
 </resources>

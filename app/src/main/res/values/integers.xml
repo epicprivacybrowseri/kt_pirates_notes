@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- splash screen -->
-    <integer name="delay_splash_screen_ms">5000</integer>
+    <integer name="delay_splash_screen_ms">100</integer>
 </resources>
