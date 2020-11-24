@@ -43,9 +43,10 @@
             android:id="@+id/imPhoto"
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:src="@drawable/ic_launcher_background"
+            android:src="@drawable/ic_add_photo"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
