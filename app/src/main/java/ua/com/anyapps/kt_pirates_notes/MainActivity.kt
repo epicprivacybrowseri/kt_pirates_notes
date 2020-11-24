@@ -15,7 +15,7 @@ import ua.com.anyapps.kt_pirates_notes.model.Note
 import ua.com.anyapps.kt_pirates_notes.room.AppDatabase
 import ua.com.anyapps.kt_pirates_notes.room.dao.NoteDAO
 
-
+https://android.jlelse.eu/build-mvvm-application-with-kotlin-part1-getting-started-972852e61193
 class MainActivity : AppCompatActivity(){
     val TAG: String = "debapp"
     lateinit var host: NavHostFragment
