@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity(){
         navController = host.navController
         notes_list_bottom_menu.setupWithNavController(navController)
 
-        /*dfgfdg
+        /*dfgfdgdf
         host = supportFragmentManager
             .findFragmentById(R.id.notes_nav_host_fragment) as NavHostFragment? ?: return
         navController = host.navController
