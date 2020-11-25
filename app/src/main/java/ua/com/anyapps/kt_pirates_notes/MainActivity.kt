@@ -11,12 +11,9 @@ import androidx.room.Room
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import ua.com.anyapps.kt_pirates_notes.model.Note
+import ua.com.anyapps.kt_pirates_notes.model.ENote
 import ua.com.anyapps.kt_pirates_notes.room.AppDatabase
 import ua.com.anyapps.kt_pirates_notes.room.dao.NoteDAO
-
-https://android.jlelse.eu/build-mvvm-application-with-kotlin-part1-getting-started-972852e61193
-https://umangburman.github.io/MVVM-DataBinding-With-LiveData-Login/
 
 class MainActivity : AppCompatActivity(){
     val TAG: String = "debapp"
@@ -45,16 +42,16 @@ dfgfdg*/
         ).build()
         val noteDao: NoteDAO = db.noteDAO()
 
-        val note1: Note = Note("Title1", "Text1", 1)
-        val note2: Note = Note("Title2", "Text2", 2)
+        val note1: ENote = ENote("Title1", "Text1", 1)
+        val note2: ENote = ENote("Title2", "Text2", 2)
 
         GlobalScope.launch {
             noteDao.insert(note1)
             noteDao.insert(note2)
         }
 
-        val list = mutableListOf<Note>()
-        noteDao.getById("1").observe(this, Observer{note:Note?->
+        val list = mutableListOf<ENote>()
+        noteDao.getById("1").observe(this, Observer{note:ENote?->
             Log.d(TAG, "Title: " + note?.title + " Text: " + note?.text)
         })
 
