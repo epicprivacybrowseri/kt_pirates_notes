@@ -9,10 +9,14 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import androidx.room.Room
 import kotlinx.android.synthetic.main.activity_main.*
-import ua.com.anyapps.kt_pirates_notes.model.Noote
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import ua.com.anyapps.kt_pirates_notes.model.Note
 import ua.com.anyapps.kt_pirates_notes.room.AppDatabase
 import ua.com.anyapps.kt_pirates_notes.room.dao.NoteDAO
 
+https://android.jlelse.eu/build-mvvm-application-with-kotlin-part1-getting-started-972852e61193
+https://umangburman.github.io/MVVM-DataBinding-With-LiveData-Login/
 
 class MainActivity : AppCompatActivity(){
     val TAG: String = "debapp"
@@ -41,13 +45,16 @@ dfgfdg*/
         ).build()
         val noteDao: NoteDAO = db.noteDAO()
 
-        val note1: Noote = Noote(1,"Title1", "Text1")
-        val note2: Noote = Noote(2,"Title2", "Text2")
-        noteDao.insert(note1)
-        noteDao.insert(note2)
+        val note1: Note = Note("Title1", "Text1", 1)
+        val note2: Note = Note("Title2", "Text2", 2)
 
-        val list = mutableListOf<Noote>()
-        noteDao.getById("1").observe(this, Observer{note:Noote?->
+        GlobalScope.launch {
+            noteDao.insert(note1)
+            noteDao.insert(note2)
+        }
+
+        val list = mutableListOf<Note>()
+        noteDao.getById("1").observe(this, Observer{note:Note?->
             Log.d(TAG, "Title: " + note?.title + " Text: " + note?.text)
         })
 
