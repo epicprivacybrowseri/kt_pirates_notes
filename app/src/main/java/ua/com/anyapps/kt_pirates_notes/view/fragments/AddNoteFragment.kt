@@ -82,7 +82,10 @@ class AddNoteFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         view.btnSave.setOnClickListener {
-            addNoteViewModel.btnSaveNoteClicked(Note(view.etTitle.text.toString(), view.etText.text.toString()))
+            val title: String = view.etTitle.text.toString()
+            val text: String = view.etText.text.toString()
+
+            addNoteViewModel.btnSaveNoteClicked(Note(title, text))
             findNavController().navigate(R.id.listOfNotesFragment)
         }
     }
