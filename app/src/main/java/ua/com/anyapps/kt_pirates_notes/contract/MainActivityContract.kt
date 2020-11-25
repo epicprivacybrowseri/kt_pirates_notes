@@ -1,6 +1,18 @@
 package ua.com.anyapps.kt_pirates_notes.contract
 
+import androidx.lifecycle.MutableLiveData
+import ua.com.anyapps.kt_pirates_notes.model.Note
+
 interface MainActivityContract {
+    interface Repository{
+        fun getNotes(): MutableLiveData<MutableList<Note>>
+        fun getById(id: String): Note
+        fun insert(note: Note)
+    }
+
+    interface AddNoteViewModel{
+        fun btnSaveNoteClicked(note: Note)
+    }
     /*interface Repository{
         fun insert(user: User)
         fun getAll(): LiveData<List<User>>

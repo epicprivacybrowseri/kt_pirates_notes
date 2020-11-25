@@ -5,12 +5,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import kotlinx.android.synthetic.main.fragment_add_note.view.*
 import ua.com.anyapps.kt_pirates_notes.R
-import ua.com.anyapps.kt_pirates_notes.model.ENote
 import ua.com.anyapps.kt_pirates_notes.model.Note
 import ua.com.anyapps.kt_pirates_notes.viewmodel.AddNoteViewModel
 
@@ -41,20 +40,27 @@ class AddNoteFragment : Fragment() {
             param2 = it.getString(ARG_PARAM2)
         }
 
-        addNoteViewModel = ViewModelProviders.of(this).get(AddNoteViewModel::class.java)
+        setupModel()
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        addNoteViewModel.info.set("22222222222222")
-        addNoteViewModel.noteTitle.observe(this, Observer{str: String?->
+        //addNoteViewModel.info.set("22222222222222")
+        /*addNoteViewModel.noteTitle.observe(this, Observer{str: String?->
             Log.d(TAG, "Title2222: " + str)
-        })
+        })*/
+        val view: View = inflater.inflate(R.layout.fragment_add_note, container, false)
         addNoteViewModel.info2.observe(this, Observer{str: String?->
             Log.d(TAG, "From Model: " + str)
         })
+        /*btnTestClick.setOnClickListener {
+            Log.d(TAG, "ccccccccccccc")
+        }*/
+
+
+
 
         /*
         //binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
@@ -67,7 +73,15 @@ class AddNoteFragment : Fragment() {
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_add_note, container, false)
         return binding?.root*/
-        return inflater.inflate(R.layout.fragment_add_note, container, false)
+        return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        view.btnSave.setOnClickListener {
+            addNoteViewModel.btnSaveNoteClicked(Note(view.etTitle.text.toString(), view.etText.text.toString()))
+        }
     }
 
     companion object {
@@ -88,5 +102,9 @@ class AddNoteFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    private fun setupModel() {
+        addNoteViewModel = ViewModelProviders.of(this).get(AddNoteViewModel::class.java)
     }
 }
