@@ -12,6 +12,9 @@ class AddNoteViewModel() : ViewModel(), MainActivityContract.AddNoteViewModel {
     val repository: Repository = Repository()
     val TAG: String = "debapp"
 
+    private val _onMessageError = MutableLiveData<Any>()
+    val onMessageError: LiveData<Any> = _onMessageError
+
     var notes: LiveData<MutableList<Note>> = repository.getNotes()
     //var noteTitle = MutableLiveData<String>()
 
@@ -32,6 +35,7 @@ class AddNoteViewModel() : ViewModel(), MainActivityContract.AddNoteViewModel {
 
     override fun btnSaveNoteClicked(note: Note) {
         repository.insert(note)
+        //_onMessageError.value = "error!!!"
     }
 
 }

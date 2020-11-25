@@ -5,9 +5,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_add_note.view.*
 import ua.com.anyapps.kt_pirates_notes.R
 import ua.com.anyapps.kt_pirates_notes.model.Note
@@ -81,6 +83,7 @@ class AddNoteFragment : Fragment() {
 
         view.btnSave.setOnClickListener {
             addNoteViewModel.btnSaveNoteClicked(Note(view.etTitle.text.toString(), view.etText.text.toString()))
+            findNavController().navigate(R.id.listOfNotesFragment)
         }
     }
 
@@ -106,5 +109,10 @@ class AddNoteFragment : Fragment() {
 
     private fun setupModel() {
         addNoteViewModel = ViewModelProviders.of(this).get(AddNoteViewModel::class.java)
+        addNoteViewModel.onMessageError.observe(this, onMessageErrorObserver)
+    }
+
+    private val onMessageErrorObserver = Observer<Any> {
+        Toast.makeText(activity,"Error $it",Toast.LENGTH_SHORT).show()
     }
 }
