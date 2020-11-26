@@ -15,6 +15,13 @@ import ua.com.anyapps.kt_pirates_notes.model.ENote
 import ua.com.anyapps.kt_pirates_notes.room.AppDatabase
 import ua.com.anyapps.kt_pirates_notes.room.dao.NoteDAO
 
+
+/*
+https://github.com/karntrehan/Nagar/tree/master/app/src/main/java/com/karntrehan/nagar
+https://github.com/emedinaa/kotlin-mvvm/blob/master/KotlinMVVM/app/src/main/java/com/emedinaa/kotlinmvvm/viewmodel/MuseumViewModel.kt
+ */
+
+
 class MainActivity : AppCompatActivity(){
     val TAG: String = "debapp"
     lateinit var host: NavHostFragment

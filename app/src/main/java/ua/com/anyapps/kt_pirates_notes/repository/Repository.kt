@@ -14,7 +14,7 @@ import ua.com.anyapps.kt_pirates_notes.room.dao.NoteDAO
 import javax.inject.Inject
 
 
-class Repository: MainActivityContract.Repository {
+class Repository{
     val TAG: String = "debapp"
     @Inject lateinit var appDatabase: AppDatabase
     @Inject lateinit var context: Context
@@ -28,7 +28,7 @@ class Repository: MainActivityContract.Repository {
         return noteTitle
     }
 
-    override fun getNotes(): MutableList<Note> {
+    fun getNotes(): MutableList<Note> {
         /*val note1: Note = Note("Title1111", "Text1")
         val note2: Note = Note("Title21111111111", "Text2")
         val notes: MutableList<Note> = arrayListOf(note1, note2)
@@ -46,12 +46,12 @@ class Repository: MainActivityContract.Repository {
         return list
     }
 
-    override fun getById(id: String): Note {
+    fun getById(id: String): Note {
         val note: Note = Note("Title1", "Text1")
         return note
     }
 
-    override fun insert(note: Note) {
+    fun insert(note: Note) {
         Log.d(TAG, "INSERTED ${note.noteTitle} ${note.noteTitle}" )
         var eNote: ENote = ENote(note.noteTitle, note.noteTitle)
         appDatabase.noteDAO().insert(eNote)

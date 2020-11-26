@@ -8,7 +8,7 @@ import ua.com.anyapps.kt_pirates_notes.contract.MainActivityContract
 import ua.com.anyapps.kt_pirates_notes.model.Note
 import ua.com.anyapps.kt_pirates_notes.repository.Repository
 
-class ListOfNotesViewModel(): ViewModel(), MainActivityContract.ListOfNotesViewModel {
+class ListOfNotesViewModel(): ViewModel(){
     val repository: Repository = Repository()
     val TAG: String = "debapp"
 
@@ -24,7 +24,7 @@ class ListOfNotesViewModel(): ViewModel(), MainActivityContract.ListOfNotesViewM
         notes.value = repository.getNotes()
     }
 
-    override fun loadNotesList() {
+    fun loadNotesList() {
         //notes.value = repository.getNotes()
     }
 }

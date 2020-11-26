@@ -5,17 +5,17 @@ import ua.com.anyapps.kt_pirates_notes.model.Note
 import ua.com.anyapps.kt_pirates_notes.room.dao.NoteDAO
 
 interface MainActivityContract {
-    interface Repository{
+    interface Repository1{
         fun getNotes(): MutableList<Note>
         fun getById(id: String): Note
         fun insert(note: Note)
     }
 
-    interface AddNoteViewModel{
+    interface AddNoteViewModel1{
         fun btnSaveNoteClicked(note: Note)
     }
 
-    interface ListOfNotesViewModel{
+    interface ListOfNotesViewModel1{
         fun loadNotesList()
     }
     /*interface Repository{
@@ -38,6 +38,12 @@ interface MainActivityContract {
     interface View{
         //
     }
+
+https://github.com/karntrehan/Nagar/tree/master/app/src/main/java/com/karntrehan/nagar
+https://github.com/emedinaa/kotlin-mvvm/blob/master/KotlinMVVM/app/src/main/java/com/emedinaa/kotlinmvvm/viewmodel/MuseumViewModel.kt
+
+
+
 
     https://www.raywenderlich.com/636803-mvvm-and-databinding-android-design-patterns
     https://proandroiddev.com/mvvm-with-kotlin-android-architecture-components-dagger-2-retrofit-and-rxandroid-1a4ebb38c699

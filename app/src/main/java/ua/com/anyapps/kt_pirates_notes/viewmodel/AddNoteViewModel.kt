@@ -8,7 +8,7 @@ import ua.com.anyapps.kt_pirates_notes.model.ENote
 import ua.com.anyapps.kt_pirates_notes.model.Note
 import ua.com.anyapps.kt_pirates_notes.repository.Repository
 
-class AddNoteViewModel() : ViewModel(), MainActivityContract.AddNoteViewModel {
+class AddNoteViewModel() : ViewModel(){
     val repository: Repository = Repository()
     val TAG: String = "debapp"
 
@@ -32,7 +32,7 @@ class AddNoteViewModel() : ViewModel(), MainActivityContract.AddNoteViewModel {
 
     //var info = ObservableField<String>("times..")
 
-    override fun btnSaveNoteClicked(note: Note) {
+    fun btnSaveNoteClicked(note: Note) {
         repository.insert(note)
         //_onMessageError.value = "error!!!"
     }
