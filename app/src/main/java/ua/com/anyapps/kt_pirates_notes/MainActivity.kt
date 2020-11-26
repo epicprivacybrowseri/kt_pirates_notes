@@ -39,22 +39,21 @@ dfgfdg*/
         val db = Room.databaseBuilder(
             applicationContext,
             AppDatabase::class.java, "database"
-        ).build()
+        ).allowMainThreadQueries().build()
         val noteDao: NoteDAO = db.noteDAO()
 
         val note1: ENote = ENote("Title1", "Text1", 1)
         val note2: ENote = ENote("Title2", "Text2", 2)
 
-        GlobalScope.launch {
+        //GlobalScope.launch {
             noteDao.insert(note1)
             noteDao.insert(note2)
-        }
+        //}
 
         val list = mutableListOf<ENote>()
-        noteDao.getById("1").observe(this, Observer{note:ENote?->
+        noteDao.getById("4").observe(this, Observer{note:ENote?->
             Log.d(TAG, "Title: " + note?.title + " Text: " + note?.text)
         })
-
     }
 
 

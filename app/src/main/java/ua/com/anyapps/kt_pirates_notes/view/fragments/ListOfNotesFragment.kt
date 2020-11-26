@@ -1,12 +1,22 @@
 package ua.com.anyapps.kt_pirates_notes.view.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
+import android.widget.LinearLayout
+import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.fragment_list_of_notes.*
 import ua.com.anyapps.kt_pirates_notes.R
+import ua.com.anyapps.kt_pirates_notes.adapter.ListOfNotesAdapter
+import ua.com.anyapps.kt_pirates_notes.model.Note
+import ua.com.anyapps.kt_pirates_notes.viewmodel.AddNoteViewModel
+import ua.com.anyapps.kt_pirates_notes.viewmodel.ListOfNotesViewModel
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,12 +33,18 @@ class ListOfNotesFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    val TAG: String = "debapp"
+    private lateinit var listOfNotesViewModel: ListOfNotesViewModel
+    private lateinit var adapter: ListOfNotesAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
+        setupModel()
     }
 
     override fun onCreateView(
@@ -62,6 +78,43 @@ class ListOfNotesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        setupList()
     }
+
+    private fun setupModel() {
+        listOfNotesViewModel = ViewModelProviders.of(this).get(ListOfNotesViewModel::class.java)
+        listOfNotesViewModel.onMessageError.observe(this, onMessageErrorObserver)
+    }
+
+    private val onMessageErrorObserver = Observer<Any> {
+        Toast.makeText(activity,"Error $it", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onResume() {
+        super.onResume()
+    }
+
+    private fun setupList(){
+        val note1: Note = Note("Title1", "Text1")
+        val note2: Note = Note("Title2", "Text2")
+        val notes: MutableList<Note> = arrayListOf(note1, note2)
+
+        //listOfNotesViewModel.notes.value = notes
+        listOfNotesViewModel.notes.observe(this, onFillList)
+
+        /*adapter = ListOfNotesAdapter(listOfNotesViewModel.notes.value?: emptyList())
+
+        adapter = ListOfNotesAdapter(notes)
+        rvNotesList.layoutManager = LinearLayoutManager(requireContext())
+        rvNotesList.adapter = adapter*/
+        //listOfNotesViewModel.notes.
+    }
+
+    private val onFillList = Observer<List<Note>> {
+        adapter = ListOfNotesAdapter(it)
+        rvNotesList.layoutManager = LinearLayoutManager(requireContext())
+        rvNotesList.adapter = adapter
+    }
+
+
 }

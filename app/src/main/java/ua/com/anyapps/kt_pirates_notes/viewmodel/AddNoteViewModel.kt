@@ -15,7 +15,6 @@ class AddNoteViewModel() : ViewModel(), MainActivityContract.AddNoteViewModel {
     private val _onMessageError = MutableLiveData<Any>()
     val onMessageError: LiveData<Any> = _onMessageError
 
-    var notes: LiveData<MutableList<Note>> = repository.getNotes()
     //var noteTitle = MutableLiveData<String>()
 
     lateinit var info2: MutableLiveData<String>
