@@ -11,8 +11,9 @@ import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.notes_list_item.view.*
 import ua.com.anyapps.kt_pirates_notes.R
 import ua.com.anyapps.kt_pirates_notes.model.Note
+import ua.com.anyapps.kt_pirates_notes.view.fragments.CellClickListener
 
-class ListOfNotesAdapter(var itemList: List<Note>) :
+class ListOfNotesAdapter(var itemList: List<Note>, private val cellClickListener: CellClickListener) :
     RecyclerView.Adapter<ListOfNotesAdapter.ViewHolder>() {
     val TAG: String = "debapp"
 
@@ -24,6 +25,9 @@ class ListOfNotesAdapter(var itemList: List<Note>) :
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         viewHolder.bind(itemList[position])
+        viewHolder.itemView.setOnClickListener {
+            cellClickListener.onCellClickListener()
+        }
     }
 
     override fun getItemCount(): Int {

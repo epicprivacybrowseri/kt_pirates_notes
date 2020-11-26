@@ -28,7 +28,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [ListOfNotesFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ListOfNotesFragment : Fragment() {
+class ListOfNotesFragment : Fragment(), CellClickListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -111,10 +111,16 @@ class ListOfNotesFragment : Fragment() {
     }
 
     private val onFillList = Observer<List<Note>> {
-        adapter = ListOfNotesAdapter(it)
+        adapter = ListOfNotesAdapter(it, this)
         rvNotesList.layoutManager = LinearLayoutManager(requireContext())
         rvNotesList.adapter = adapter
     }
 
+    override fun onCellClickListener() {
+        Log.d(TAG, "LIST CLICK")
+    }
+}
 
+interface CellClickListener {
+    fun onCellClickListener()
 }
