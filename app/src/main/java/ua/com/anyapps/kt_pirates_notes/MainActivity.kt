@@ -42,8 +42,8 @@ dfgfdg*/
         ).allowMainThreadQueries().build()
         val noteDao: NoteDAO = db.noteDAO()
 
-        val note1: ENote = ENote("Title1", "Text1", 1)
-        val note2: ENote = ENote("Title2", "Text2", 2)
+        val note1: ENote = ENote("Important!", "Buy bread...", 1)
+        val note2: ENote = ENote("A meeting", "15.00", 2)
 
         //GlobalScope.launch {
             noteDao.insert(note1)
