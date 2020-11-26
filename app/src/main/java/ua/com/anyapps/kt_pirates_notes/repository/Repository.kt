@@ -1,5 +1,6 @@
 package ua.com.anyapps.kt_pirates_notes.repository
 
+import android.content.Context
 import android.util.Log
 import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
@@ -16,6 +17,7 @@ import javax.inject.Inject
 class Repository: MainActivityContract.Repository {
     val TAG: String = "debapp"
     @Inject lateinit var appDatabase: AppDatabase
+    @Inject lateinit var context: Context
     init{
         App.applicationComponent.inject(this)
     }
@@ -33,7 +35,15 @@ class Repository: MainActivityContract.Repository {
         val result = MutableLiveData<MutableList<Note>>()
         result.value = notes
         return notes*/
+        var list = mutableListOf<Note>()
+        appDatabase.noteDAO().getAll().forEach { eNote: ENote ->
+            var n:Note = Note(eNote.title, eNote.text)
+            list.add(n)
+        }
 
+        val result = MutableLiveData<MutableList<Note>>()
+        //result.value = notes
+        return list
     }
 
     override fun getById(id: String): Note {

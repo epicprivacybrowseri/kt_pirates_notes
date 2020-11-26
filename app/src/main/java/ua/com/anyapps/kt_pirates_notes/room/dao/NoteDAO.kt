@@ -10,8 +10,8 @@ interface NoteDAO {
     @Query("SELECT * FROM notes WHERE id = :id")
     fun getById(id: String): LiveData<ENote>
 
-    @Query("SELECT * FROM notes")
-    fun getAll(): LiveData<List<ENote>>
+    @Query("SELECT * FROM notes ORDER BY id DESC")
+    fun getAll(): List<ENote>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(note: ENote)

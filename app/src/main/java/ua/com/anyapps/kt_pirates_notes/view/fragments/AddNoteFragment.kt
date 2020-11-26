@@ -1,10 +1,12 @@
 package ua.com.anyapps.kt_pirates_notes.view.fragments
 
+import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -84,6 +86,14 @@ class AddNoteFragment : Fragment() {
         view.btnSave.setOnClickListener {
             val title: String = view.etTitle.text.toString()
             val text: String = view.etText.text.toString()
+
+            // скрыть клавиатуру
+            val inputMethodManager: InputMethodManager = activity!!.getSystemService(
+                Activity.INPUT_METHOD_SERVICE
+            ) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(
+                activity!!.currentFocus!!.windowToken, 0
+            )
 
             addNoteViewModel.btnSaveNoteClicked(Note(title, text))
             findNavController().navigate(R.id.listOfNotesFragment)
