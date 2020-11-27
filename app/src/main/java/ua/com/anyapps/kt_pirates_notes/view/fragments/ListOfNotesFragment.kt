@@ -93,13 +93,19 @@ class ListOfNotesFragment : Fragment(), CellClickListener {
     }
 
     private fun initObservers() {
-        listOfNotesViewModel.notesList.observe(this, onFillList)
+        //listOfNotesViewModel.notesList.observe(this, onFillList)
     }
 
-    private val onFillList = Observer<List<Note>> {
-        adapter = ListOfNotesAdapter(it, this)
+    fun setupUI(){
+        adapter = ListOfNotesAdapter(listOfNotesViewModel.notesList.value?: emptyList(), this)
         rvNotesList.layoutManager = LinearLayoutManager(requireContext())
         rvNotesList.adapter = adapter
+    }
+    private val renderNotes = Observer<List<Note>> {
+        //adapter = ListOfNotesAdapter(it, this)
+        //rvNotesList.layoutManager = LinearLayoutManager(requireContext())
+        //rvNotesList.adapter = adapter
+        adapter.update(it)
     }
 
     override fun onCellClickListener(dbId: Int) {
@@ -113,6 +119,7 @@ class ListOfNotesFragment : Fragment(), CellClickListener {
     override fun onResume() {
         super.onResume()
         Log.d(TAG, "Resume")
+        listOfNotesViewModel.loadMuseums()
     }
 }
 

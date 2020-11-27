@@ -33,10 +33,10 @@ class ListOfNotesAdapter(var itemList: List<Note>, private val cellClickListener
         return itemList.size
     }
 
-    /*fun update(data: List<Note>) {
+    fun update(data: List<Note>) {
         itemList = data
         notifyDataSetChanged()
-    }*/
+    }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val tvTitle: TextView = view.tvTitle
