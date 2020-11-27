@@ -10,6 +10,10 @@
         android:name="ua.com.anyapps.kt_pirates_notes.view.fragments.ListOfNotesFragment"
         android:label="fragment_list_of_notes"
         tools:layout="@layout/fragment_list_of_notes" >
+        <argument
+            android:name="act"
+            app:argType="integer"
+            android:defaultValue="0" />
         <action
             android:id="@+id/action_listOfNotesFragment_to_addNoteFragment"
             app:destination="@id/addNoteFragment" />

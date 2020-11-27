@@ -19,8 +19,6 @@ class Repository{
         App.applicationComponent.inject(this)
     }
 
-    lateinit var noteTitle:MutableLiveData<String>
-
     val notesList = appDatabase.noteDAO().getAll()
 
     fun getById(id: String): Note {

@@ -60,6 +60,10 @@ class AddNoteFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         view.btnSave.setOnClickListener(btnSaveClickListener)
+
+        //val safeArgs = ListOfNotesFragmentArgs.fromBundle(arguments)
+        //val flowStepNumber = safeArgs.act
+        //Log.d(TAG, "Arg: $flowStepNumber")
     }
 
     val btnSaveClickListener = View.OnClickListener { view: View? ->
@@ -70,6 +74,13 @@ class AddNoteFragment : Fragment() {
 
         addNoteViewModel.btnSaveNoteClicked(Note(title, text))
         findNavController().navigate(R.id.listOfNotesFragment)
+
+
+
+        /*var action: HomeFragmentDirections.ActionGoto1 =
+                HomeFragmentDirections.actionGoto1()
+        action.setAct(1)
+        findNavController().navigate(action);*/
     }
 
     fun beforeSaving(){
