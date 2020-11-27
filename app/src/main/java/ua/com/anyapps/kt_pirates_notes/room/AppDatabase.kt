@@ -8,4 +8,8 @@ import ua.com.anyapps.kt_pirates_notes.room.dao.NoteDAO
 @Database(entities = [Note::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun noteDAO(): NoteDAO
+
+    companion object {
+        const val DB_NAME = "database"
+    }
 }

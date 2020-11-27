@@ -2,6 +2,7 @@ package ua.com.anyapps.kt_pirates_notes.repository
 
 import android.content.Context
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -29,5 +30,9 @@ class Repository{
     suspend fun insert(note: Note) {
         Log.d(TAG, "INSERTED ${note.title} ${note.text}" )
         appDatabase.noteDAO().insert(note)
+    }
+
+    fun getAll(): LiveData<List<Note>> {
+        return appDatabase.noteDAO().getAll()
     }
 }

@@ -61,9 +61,11 @@ class AddNoteFragment : Fragment() {
 
         view.btnSave.setOnClickListener(btnSaveClickListener)
 
-        //val safeArgs = ListOfNotesFragmentArgs.fromBundle(arguments)
-        //val flowStepNumber = safeArgs.act
-        //Log.d(TAG, "Arg: $flowStepNumber")
+        if(arguments!=null) {
+            val safeArgs = ListOfNotesFragmentArgs.fromBundle(arguments!!)
+            val flowStepNumber = safeArgs.act
+            Log.d(TAG, "Arg: $flowStepNumber")
+        }
     }
 
     val btnSaveClickListener = View.OnClickListener { view: View? ->

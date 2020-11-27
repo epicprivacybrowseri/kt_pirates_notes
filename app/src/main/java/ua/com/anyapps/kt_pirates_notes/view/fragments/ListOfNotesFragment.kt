@@ -44,6 +44,7 @@ class ListOfNotesFragment : Fragment(), CellClickListener {
         }
 
         setupModel()
+        setupUI()
     }
 
     override fun onCreateView(
@@ -101,12 +102,12 @@ class ListOfNotesFragment : Fragment(), CellClickListener {
         rvNotesList.adapter = adapter
     }
 
-    override fun onCellClickListener(position: Int) {
-        Log.d(TAG, "LIST CLICK: " + position)
+    override fun onCellClickListener(dbId: Int) {
+        Log.d(TAG, "LIST CLICK: " + dbId)
 
-        //val bundle = Bundle()
-        //bundle.putInt("act", 1)
-        //findNavController().navigate(R.id.addNoteFragment, bundle)
+        val bundle = Bundle()
+        bundle.putInt("act", dbId)
+        findNavController().navigate(R.id.addNoteFragment, bundle)
     }
 
     override fun onResume() {

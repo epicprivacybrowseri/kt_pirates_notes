@@ -3,6 +3,7 @@ package ua.com.anyapps.kt_pirates_notes.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import ua.com.anyapps.kt_pirates_notes.model.Note
 import ua.com.anyapps.kt_pirates_notes.repository.Repository
 
 class ListOfNotesViewModel(): ViewModel(){
@@ -12,5 +13,7 @@ class ListOfNotesViewModel(): ViewModel(){
     private val _onMessageError = MutableLiveData<Any>()
     val onMessageError: LiveData<Any> = _onMessageError
 
-    val notesList = repository.notesList
+    //val notesList = repository.notesList
+    private val _notesList = repository.getAll()
+    val notesList: LiveData<List<Note>> = _notesList
 }
