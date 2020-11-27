@@ -1,26 +1,11 @@
 package ua.com.anyapps.kt_pirates_notes
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import androidx.room.Room
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import ua.com.anyapps.kt_pirates_notes.model.ENote
-import ua.com.anyapps.kt_pirates_notes.room.AppDatabase
-import ua.com.anyapps.kt_pirates_notes.room.dao.NoteDAO
-
-
-/*
-https://github.com/karntrehan/Nagar/tree/master/app/src/main/java/com/karntrehan/nagar
-https://github.com/emedinaa/kotlin-mvvm/blob/master/KotlinMVVM/app/src/main/java/com/emedinaa/kotlinmvvm/viewmodel/MuseumViewModel.kt
- */
-
 
 class MainActivity : AppCompatActivity(){
     val TAG: String = "debapp"
@@ -33,58 +18,5 @@ class MainActivity : AppCompatActivity(){
         host = notes_nav_host_fragment as NavHostFragment
         navController = host.navController
         notes_list_bottom_menu.setupWithNavController(navController)
-
-        /*dfgfdgdf
-        host = supportFragmentManager
-            .findFragmentById(R.id.notes_nav_host_fragment) as NavHostFragment? ?: return
-        navController = host.navController
-dfgfdg*/
-        /*val bottomNav = findViewById<BottomNavigationView>(R.id.notes_list_bottom_menu)
-        bottomNav?.setupWithNavController(navController)*/
-        //notes_list_bottom_menu.setOnNavigationItemSelectedListener(this)
-
-        /*val db = Room.databaseBuilder(
-            applicationContext,
-            AppDatabase::class.java, "database"
-        ).allowMainThreadQueries().build()
-        val noteDao: NoteDAO = db.noteDAO()
-
-        val note1: ENote = ENote("Important!", "Buy bread...")
-        val note2: ENote = ENote("A meeting", "15.00")
-
-        //GlobalScope.launch {
-            noteDao.insert(note1)
-            noteDao.insert(note2)
-        //}
-
-        val list = mutableListOf<ENote>()
-        noteDao.getById("3").observe(this, Observer{note:ENote?->
-            Log.d(TAG, "Title: " + note?.title + " Text: " + note?.text)
-        })*/
     }
-
-
-    /*fun btnClick(view: View) {
-        navController.navigate(R.id.addNoteFragment)
-    }
-
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.listOfNotesFragment -> {
-                Log.d(TAG, "List fragment")
-                //getSupportActionBar()?.show()
-            }
-            R.id.addNoteFragment -> {
-                Log.d(TAG, "Add fragment")
-                //getSupportActionBar()?.hide()
-                notes_list_bottom_menu.setSelectedItemId(R.id.addNoteFragment);
-            }
-            else -> {
-                //getSupportActionBar()?.show()
-                super.onOptionsItemSelected(item)
-            }
-        }
-        //Log.d(TAG, "1111111")
-        return true
-    }*/
 }

@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_list_of_notes.*
 import ua.com.anyapps.kt_pirates_notes.R
 import ua.com.anyapps.kt_pirates_notes.adapter.ListOfNotesAdapter
-import ua.com.anyapps.kt_pirates_notes.model.ENote
+import ua.com.anyapps.kt_pirates_notes.model.Note
 import ua.com.anyapps.kt_pirates_notes.viewmodel.ListOfNotesViewModel
 
 // TODO: Rename parameter arguments, choose names that match
@@ -88,28 +88,11 @@ class ListOfNotesFragment : Fragment(), CellClickListener {
         Toast.makeText(activity,"Error $it", Toast.LENGTH_SHORT).show()
     }
 
-    override fun onResume() {
-        super.onResume()
-    }
-
     private fun setupList(){
-        val note1: ENote = ENote("Title1", "Text1")
-        val note2: ENote = ENote("Title2", "Text2")
-        val notes: MutableList<ENote> = arrayListOf(note1, note2)
-
-        //listOfNotesViewModel.notes.value = notes
-        //listOfNotesViewModel.notes.observe(this, onFillList)
-        listOfNotesViewModel.data.observe(this, onFillList)
-
-        /*adapter = ListOfNotesAdapter(listOfNotesViewModel.notes.value?: emptyList())
-
-        adapter = ListOfNotesAdapter(notes)
-        rvNotesList.layoutManager = LinearLayoutManager(requireContext())
-        rvNotesList.adapter = adapter*/
-        //listOfNotesViewModel.notes.
+        listOfNotesViewModel.notesList.observe(this, onFillList)
     }
 
-    private val onFillList = Observer<List<ENote>> {
+    private val onFillList = Observer<List<Note>> {
         adapter = ListOfNotesAdapter(it, this)
         rvNotesList.layoutManager = LinearLayoutManager(requireContext())
         rvNotesList.adapter = adapter

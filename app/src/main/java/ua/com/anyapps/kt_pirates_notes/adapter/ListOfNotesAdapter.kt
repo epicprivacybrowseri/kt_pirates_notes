@@ -9,10 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.notes_list_item.view.*
 import ua.com.anyapps.kt_pirates_notes.R
-import ua.com.anyapps.kt_pirates_notes.model.ENote
+import ua.com.anyapps.kt_pirates_notes.model.Note
 import ua.com.anyapps.kt_pirates_notes.view.fragments.CellClickListener
 
-class ListOfNotesAdapter(var itemList: List<ENote>, private val cellClickListener: CellClickListener) :
+class ListOfNotesAdapter(var itemList: List<Note>, private val cellClickListener: CellClickListener) :
     RecyclerView.Adapter<ListOfNotesAdapter.ViewHolder>() {
     val TAG: String = "debapp"
 
@@ -33,7 +33,7 @@ class ListOfNotesAdapter(var itemList: List<ENote>, private val cellClickListene
         return itemList.size
     }
 
-    fun update(data: List<ENote>) {
+    fun update(data: List<Note>) {
         itemList = data
         notifyDataSetChanged()
     }
@@ -42,7 +42,7 @@ class ListOfNotesAdapter(var itemList: List<ENote>, private val cellClickListene
         private val tvTitle: TextView = view.tvTitle
         private val tvText: TextView = view.tvText
         private val ivThumbnail: ImageView = view.ivThumbnail
-        fun bind(note: ENote) {
+        fun bind(note: Note) {
             tvTitle.text = note.title.capitalize()
             tvText.text = note.text.capitalize()
             Glide.with(ivThumbnail.context).load(note.thumbnail).into(ivThumbnail)

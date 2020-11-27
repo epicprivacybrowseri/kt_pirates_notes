@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "notes")
-data class ENote(
+data class Note(
     val title: String,
     val text: String,
     val thumbnail: String?="android.resource://ua.com.anyapps.kt_pirates_notes/drawable/im_note",

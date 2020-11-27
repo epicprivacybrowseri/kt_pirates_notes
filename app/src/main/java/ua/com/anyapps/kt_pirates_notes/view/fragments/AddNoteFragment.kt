@@ -12,9 +12,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import kotlinx.android.synthetic.main.fragment_add_note.*
 import kotlinx.android.synthetic.main.fragment_add_note.view.*
 import ua.com.anyapps.kt_pirates_notes.R
-import ua.com.anyapps.kt_pirates_notes.model.ENote
+import ua.com.anyapps.kt_pirates_notes.model.Note
 import ua.com.anyapps.kt_pirates_notes.viewmodel.AddNoteViewModel
 
 
@@ -51,56 +52,35 @@ class AddNoteFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        //addNoteViewModel.info.set("22222222222222")
-        /*addNoteViewModel.noteTitle.observe(this, Observer{str: String?->
-            Log.d(TAG, "Title2222: " + str)
-        })*/
         val view: View = inflater.inflate(R.layout.fragment_add_note, container, false)
-        addNoteViewModel.info2.observe(this, Observer{str: String?->
-            Log.d(TAG, "From Model: " + str)
-        })
-        /*btnTestClick.setOnClickListener {
-            Log.d(TAG, "ccccccccccccc")
-        }*/
-
-
-
-
-        /*
-        //binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_note, container, false)
-        val note: Note = Note("", "")
-        addNoteViewModel = AddNoteViewModel(note)
-        //binding?.lifecycleOwner = this
-        binding?.viewModel = addNoteViewModel
-
-        // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_add_note, container, false)
-        return binding?.root*/
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.btnSave.setOnClickListener {
-            val title: String = view?.etTitle?.text.toString()
-            val text: String = view?.etText?.text.toString()
-
-            // скрыть клавиатуру
-            val inputMethodManager: InputMethodManager = activity!!.getSystemService(
-                    Activity.INPUT_METHOD_SERVICE
-            ) as InputMethodManager
-            inputMethodManager.hideSoftInputFromWindow(
-                    activity!!.currentFocus!!.windowToken, 0
-            )
-
-            addNoteViewModel.btnSaveNoteClicked(ENote(title, text))
-            findNavController().navigate(R.id.listOfNotesFragment)
-        }
+        view.btnSave.setOnClickListener(btnSaveClickListener)
     }
 
-    //val btnSaveClickListener =
+    val btnSaveClickListener = View.OnClickListener { view: View? ->
+        val title: String = etTitle.text.toString()
+        val text: String = etText.text.toString()
+
+        beforeSaving()
+
+        addNoteViewModel.btnSaveNoteClicked(Note(title, text))
+        findNavController().navigate(R.id.listOfNotesFragment)
+    }
+
+    fun beforeSaving(){
+        // скрыть клавиатуру
+        val inputMethodManager: InputMethodManager = activity!!.getSystemService(
+                Activity.INPUT_METHOD_SERVICE
+        ) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(
+                activity!!.currentFocus!!.windowToken, 0
+        )
+    }
 
     companion object {
         /**
