@@ -50,13 +50,9 @@ class Repository{
         return note
     }
 
-    fun insert(note: ENote) {
-        suspend fun refresh() {
-            withContext(Dispatchers.IO) {
-                Log.d(TAG, "INSERTED ${note.title} ${note.text}" )
-                var eNote: ENote = ENote(note.title, note.text)
-                appDatabase.noteDAO().insert(eNote)
-            }
-        }
+    suspend fun insert(note: ENote) {
+        Log.d(TAG, "INSERTED ${note.title} ${note.text}" )
+        //var eNote: ENote = ENote(note.title, note.text)
+        appDatabase.noteDAO().insert(note)
     }
 }

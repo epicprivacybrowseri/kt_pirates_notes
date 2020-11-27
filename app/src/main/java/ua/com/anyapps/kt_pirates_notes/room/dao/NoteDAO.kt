@@ -13,7 +13,7 @@ interface NoteDAO {
     fun getAll(): LiveData<List<ENote>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(note: ENote)
+    suspend fun insert(note: ENote)
 
     /*@Update(onConflict = OnConflictStrategy.REPLACE)
     fun updateNote(note: ENote)

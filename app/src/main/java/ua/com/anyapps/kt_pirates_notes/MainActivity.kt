@@ -43,7 +43,7 @@ dfgfdg*/
         bottomNav?.setupWithNavController(navController)*/
         //notes_list_bottom_menu.setOnNavigationItemSelectedListener(this)
 
-        val db = Room.databaseBuilder(
+        /*val db = Room.databaseBuilder(
             applicationContext,
             AppDatabase::class.java, "database"
         ).allowMainThreadQueries().build()
@@ -60,7 +60,7 @@ dfgfdg*/
         val list = mutableListOf<ENote>()
         noteDao.getById("3").observe(this, Observer{note:ENote?->
             Log.d(TAG, "Title: " + note?.title + " Text: " + note?.text)
-        })
+        })*/
     }
 
 

@@ -84,21 +84,23 @@ class AddNoteFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         view.btnSave.setOnClickListener {
-            val title: String = view.etTitle.text.toString()
-            val text: String = view.etText.text.toString()
+            val title: String = view?.etTitle?.text.toString()
+            val text: String = view?.etText?.text.toString()
 
             // скрыть клавиатуру
             val inputMethodManager: InputMethodManager = activity!!.getSystemService(
-                Activity.INPUT_METHOD_SERVICE
+                    Activity.INPUT_METHOD_SERVICE
             ) as InputMethodManager
             inputMethodManager.hideSoftInputFromWindow(
-                activity!!.currentFocus!!.windowToken, 0
+                    activity!!.currentFocus!!.windowToken, 0
             )
 
             addNoteViewModel.btnSaveNoteClicked(ENote(title, text))
             findNavController().navigate(R.id.listOfNotesFragment)
         }
     }
+
+    //val btnSaveClickListener =
 
     companion object {
         /**
