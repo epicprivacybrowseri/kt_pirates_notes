@@ -25,7 +25,7 @@ class ListOfNotesAdapter(var itemList: List<Note>, private val cellClickListener
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         viewHolder.bind(itemList[position])
         viewHolder.itemView.setOnClickListener {
-            cellClickListener.onCellClickListener(position)
+            cellClickListener.onCellClickListener(itemList[position].id!!)
         }
     }
 
@@ -33,10 +33,10 @@ class ListOfNotesAdapter(var itemList: List<Note>, private val cellClickListener
         return itemList.size
     }
 
-    fun update(data: List<Note>) {
+    /*fun update(data: List<Note>) {
         itemList = data
         notifyDataSetChanged()
-    }
+    }*/
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val tvTitle: TextView = view.tvTitle
@@ -46,6 +46,7 @@ class ListOfNotesAdapter(var itemList: List<Note>, private val cellClickListener
             tvTitle.text = note.title.capitalize()
             tvText.text = note.text.capitalize()
             Glide.with(ivThumbnail.context).load(note.thumbnail).into(ivThumbnail)
+
         }
     }
 }
