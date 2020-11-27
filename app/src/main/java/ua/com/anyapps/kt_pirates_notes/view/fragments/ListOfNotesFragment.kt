@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -14,8 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_list_of_notes.*
 import ua.com.anyapps.kt_pirates_notes.R
 import ua.com.anyapps.kt_pirates_notes.adapter.ListOfNotesAdapter
-import ua.com.anyapps.kt_pirates_notes.model.Note
-import ua.com.anyapps.kt_pirates_notes.viewmodel.AddNoteViewModel
+import ua.com.anyapps.kt_pirates_notes.model.ENote
 import ua.com.anyapps.kt_pirates_notes.viewmodel.ListOfNotesViewModel
 
 // TODO: Rename parameter arguments, choose names that match
@@ -95,12 +93,13 @@ class ListOfNotesFragment : Fragment(), CellClickListener {
     }
 
     private fun setupList(){
-        val note1: Note = Note("Title1", "Text1")
-        val note2: Note = Note("Title2", "Text2")
-        val notes: MutableList<Note> = arrayListOf(note1, note2)
+        val note1: ENote = ENote("Title1", "Text1")
+        val note2: ENote = ENote("Title2", "Text2")
+        val notes: MutableList<ENote> = arrayListOf(note1, note2)
 
         //listOfNotesViewModel.notes.value = notes
-        listOfNotesViewModel.notes.observe(this, onFillList)
+        //listOfNotesViewModel.notes.observe(this, onFillList)
+        listOfNotesViewModel.data.observe(this, onFillList)
 
         /*adapter = ListOfNotesAdapter(listOfNotesViewModel.notes.value?: emptyList())
 
@@ -110,7 +109,7 @@ class ListOfNotesFragment : Fragment(), CellClickListener {
         //listOfNotesViewModel.notes.
     }
 
-    private val onFillList = Observer<List<Note>> {
+    private val onFillList = Observer<List<ENote>> {
         adapter = ListOfNotesAdapter(it, this)
         rvNotesList.layoutManager = LinearLayoutManager(requireContext())
         rvNotesList.adapter = adapter

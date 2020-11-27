@@ -1,18 +1,16 @@
 package ua.com.anyapps.kt_pirates_notes.contract
 
-import androidx.lifecycle.MutableLiveData
-import ua.com.anyapps.kt_pirates_notes.model.Note
-import ua.com.anyapps.kt_pirates_notes.room.dao.NoteDAO
+import ua.com.anyapps.kt_pirates_notes.model.ENote
 
 interface MainActivityContract {
     interface Repository1{
-        fun getNotes(): MutableList<Note>
-        fun getById(id: String): Note
-        fun insert(note: Note)
+        fun getNotes(): MutableList<ENote>
+        fun getById(id: String): ENote
+        fun insert(note: ENote)
     }
 
     interface AddNoteViewModel1{
-        fun btnSaveNoteClicked(note: Note)
+        fun btnSaveNoteClicked(note: ENote)
     }
 
     interface ListOfNotesViewModel1{

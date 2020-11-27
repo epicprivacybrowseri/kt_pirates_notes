@@ -49,8 +49,8 @@ dfgfdg*/
         ).allowMainThreadQueries().build()
         val noteDao: NoteDAO = db.noteDAO()
 
-        val note1: ENote = ENote("Important!", "Buy bread...", 1)
-        val note2: ENote = ENote("A meeting", "15.00", 2)
+        val note1: ENote = ENote("Important!", "Buy bread...")
+        val note2: ENote = ENote("A meeting", "15.00")
 
         //GlobalScope.launch {
             noteDao.insert(note1)
@@ -58,7 +58,7 @@ dfgfdg*/
         //}
 
         val list = mutableListOf<ENote>()
-        noteDao.getById("4").observe(this, Observer{note:ENote?->
+        noteDao.getById("3").observe(this, Observer{note:ENote?->
             Log.d(TAG, "Title: " + note?.title + " Text: " + note?.text)
         })
     }

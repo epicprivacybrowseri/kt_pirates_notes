@@ -1,6 +1,5 @@
 package ua.com.anyapps.kt_pirates_notes.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,10 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.notes_list_item.view.*
 import ua.com.anyapps.kt_pirates_notes.R
-import ua.com.anyapps.kt_pirates_notes.model.Note
+import ua.com.anyapps.kt_pirates_notes.model.ENote
 import ua.com.anyapps.kt_pirates_notes.view.fragments.CellClickListener
 
-class ListOfNotesAdapter(var itemList: List<Note>, private val cellClickListener: CellClickListener) :
+class ListOfNotesAdapter(var itemList: List<ENote>, private val cellClickListener: CellClickListener) :
     RecyclerView.Adapter<ListOfNotesAdapter.ViewHolder>() {
     val TAG: String = "debapp"
 
@@ -34,7 +33,7 @@ class ListOfNotesAdapter(var itemList: List<Note>, private val cellClickListener
         return itemList.size
     }
 
-    fun update(data: List<Note>) {
+    fun update(data: List<ENote>) {
         itemList = data
         notifyDataSetChanged()
     }
@@ -43,9 +42,9 @@ class ListOfNotesAdapter(var itemList: List<Note>, private val cellClickListener
         private val tvTitle: TextView = view.tvTitle
         private val tvText: TextView = view.tvText
         private val ivThumbnail: ImageView = view.ivThumbnail
-        fun bind(note: Note) {
-            tvTitle.text = note.noteTitle.capitalize()
-            tvText.text = note.noteText.capitalize()
+        fun bind(note: ENote) {
+            tvTitle.text = note.title.capitalize()
+            tvText.text = note.text.capitalize()
             Glide.with(ivThumbnail.context).load(note.thumbnail).into(ivThumbnail)
         }
     }

@@ -2,15 +2,12 @@ package ua.com.anyapps.kt_pirates_notes.repository
 
 import android.content.Context
 import android.util.Log
-import androidx.databinding.ObservableField
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import ua.com.anyapps.kt_pirates_notes.contract.MainActivityContract
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import ua.com.anyapps.kt_pirates_notes.di.App
 import ua.com.anyapps.kt_pirates_notes.model.ENote
-import ua.com.anyapps.kt_pirates_notes.model.Note
 import ua.com.anyapps.kt_pirates_notes.room.AppDatabase
-import ua.com.anyapps.kt_pirates_notes.room.dao.NoteDAO
 import javax.inject.Inject
 
 
@@ -28,7 +25,9 @@ class Repository{
         return noteTitle
     }
 
-    fun getNotes(): MutableList<Note> {
+    val data = appDatabase.noteDAO().getAll()
+    /*fun getNotes(): MutableList<Note> {
+
         /*val note1: Note = Note("Title1111", "Text1")
         val note2: Note = Note("Title21111111111", "Text2")
         val notes: MutableList<Note> = arrayListOf(note1, note2)
@@ -44,16 +43,20 @@ class Repository{
         val result = MutableLiveData<MutableList<Note>>()
         //result.value = notes
         return list
-    }
+    }*/
 
-    fun getById(id: String): Note {
-        val note: Note = Note("Title1", "Text1")
+    fun getById(id: String): ENote {
+        val note: ENote = ENote("Title1", "Text1")
         return note
     }
 
-    fun insert(note: Note) {
-        Log.d(TAG, "INSERTED ${note.noteTitle} ${note.noteTitle}" )
-        var eNote: ENote = ENote(note.noteTitle, note.noteTitle)
-        appDatabase.noteDAO().insert(eNote)
+    fun insert(note: ENote) {
+        suspend fun refresh() {
+            withContext(Dispatchers.IO) {
+                Log.d(TAG, "INSERTED ${note.title} ${note.text}" )
+                var eNote: ENote = ENote(note.title, note.text)
+                appDatabase.noteDAO().insert(eNote)
+            }
+        }
     }
 }

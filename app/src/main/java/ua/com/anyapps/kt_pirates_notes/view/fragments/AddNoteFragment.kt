@@ -14,7 +14,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_add_note.view.*
 import ua.com.anyapps.kt_pirates_notes.R
-import ua.com.anyapps.kt_pirates_notes.model.Note
+import ua.com.anyapps.kt_pirates_notes.model.ENote
 import ua.com.anyapps.kt_pirates_notes.viewmodel.AddNoteViewModel
 
 
@@ -95,7 +95,7 @@ class AddNoteFragment : Fragment() {
                 activity!!.currentFocus!!.windowToken, 0
             )
 
-            addNoteViewModel.btnSaveNoteClicked(Note(title, text))
+            addNoteViewModel.btnSaveNoteClicked(ENote(title, text))
             findNavController().navigate(R.id.listOfNotesFragment)
         }
     }

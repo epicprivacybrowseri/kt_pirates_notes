@@ -3,9 +3,7 @@ package ua.com.anyapps.kt_pirates_notes.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import ua.com.anyapps.kt_pirates_notes.contract.MainActivityContract
 import ua.com.anyapps.kt_pirates_notes.model.ENote
-import ua.com.anyapps.kt_pirates_notes.model.Note
 import ua.com.anyapps.kt_pirates_notes.repository.Repository
 
 class AddNoteViewModel() : ViewModel(){
@@ -32,7 +30,7 @@ class AddNoteViewModel() : ViewModel(){
 
     //var info = ObservableField<String>("times..")
 
-    fun btnSaveNoteClicked(note: Note) {
+    fun btnSaveNoteClicked(note: ENote) {
         repository.insert(note)
         //_onMessageError.value = "error!!!"
     }

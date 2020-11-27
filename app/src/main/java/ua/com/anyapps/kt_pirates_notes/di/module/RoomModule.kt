@@ -17,7 +17,7 @@ class RoomModule() {
     @Singleton
     @Provides
     fun providesRoomDatabase(context: Context): AppDatabase = Room.databaseBuilder(context,
-        AppDatabase::class.java, "database").allowMainThreadQueries().build()
+        AppDatabase::class.java, "database").build()
 
     @Singleton
     @Provides
