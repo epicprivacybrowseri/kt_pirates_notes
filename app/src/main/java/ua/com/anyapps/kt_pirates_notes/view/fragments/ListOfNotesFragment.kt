@@ -116,11 +116,11 @@ class ListOfNotesFragment : Fragment(), CellClickListener {
         rvNotesList.adapter = adapter
     }
 
-    override fun onCellClickListener() {
-        Log.d(TAG, "LIST CLICK")
+    override fun onCellClickListener(position: Int) {
+        Log.d(TAG, "LIST CLICK: " + position)
     }
 }
 
 interface CellClickListener {
-    fun onCellClickListener()
+    fun onCellClickListener(position: Int)
 }

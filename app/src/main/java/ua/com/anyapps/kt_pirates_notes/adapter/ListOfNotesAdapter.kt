@@ -26,7 +26,7 @@ class ListOfNotesAdapter(var itemList: List<Note>, private val cellClickListener
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         viewHolder.bind(itemList[position])
         viewHolder.itemView.setOnClickListener {
-            cellClickListener.onCellClickListener()
+            cellClickListener.onCellClickListener(position)
         }
     }
 
