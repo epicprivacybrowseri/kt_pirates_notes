@@ -5,8 +5,7 @@ import ua.com.anyapps.kt_pirates_notes.di.component.ApplicationComponent
 import ua.com.anyapps.kt_pirates_notes.di.component.DaggerApplicationComponent
 import ua.com.anyapps.kt_pirates_notes.di.module.AppModule
 
-
-class App: Application(){
+class App : Application() {
     companion object {
         lateinit var applicationComponent: ApplicationComponent
     }

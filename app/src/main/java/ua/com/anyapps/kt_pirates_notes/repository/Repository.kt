@@ -4,8 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import ua.com.anyapps.kt_pirates_notes.model.NoteModel
 import ua.com.anyapps.kt_pirates_notes.room.model.NoteEntity
 
-interface Repository{
-    fun getById(id: String): NoteEntity
+interface Repository {
+    fun getById(id: String): MutableLiveData<NoteEntity>
     suspend fun insert(note: NoteEntity)
     fun getAll(): MutableLiveData<List<NoteModel>>
 }

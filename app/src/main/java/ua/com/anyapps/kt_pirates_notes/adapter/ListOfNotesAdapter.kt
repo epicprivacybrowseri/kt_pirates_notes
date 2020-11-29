@@ -10,7 +10,6 @@ import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.notes_list_item.view.*
 import ua.com.anyapps.kt_pirates_notes.R
 import ua.com.anyapps.kt_pirates_notes.model.NoteModel
-import ua.com.anyapps.kt_pirates_notes.room.model.NoteEntity
 import ua.com.anyapps.kt_pirates_notes.ui.fragments.CellClickListener
 
 class ListOfNotesAdapter(private val cellClickListener: CellClickListener) :
@@ -35,7 +34,7 @@ class ListOfNotesAdapter(private val cellClickListener: CellClickListener) :
         return itemList.size
     }
 
-    fun update(data: List<NoteModel>){
+    fun update(data: List<NoteModel>) {
         itemList = data
         notifyDataSetChanged()
     }

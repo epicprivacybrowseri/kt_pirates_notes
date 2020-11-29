@@ -6,24 +6,24 @@ import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
-
 @Module
 class AppModule constructor(_application: Application) {
-    var application: Application? = null
 
-    init{
+    private lateinit var application: Application
+
+    init {
         application = _application
     }
 
     @Provides
     @Singleton
     fun provideApplication(): Application {
-        return application!!
+        return application
     }
 
     @Provides
     @Singleton
     fun provideContext(): Context {
-        return application!!
+        return application
     }
 }

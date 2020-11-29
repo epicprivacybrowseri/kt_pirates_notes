@@ -7,9 +7,10 @@ import androidx.room.PrimaryKey
 data class NoteEntity(
     val title: String,
     val text: String,
-    val thumbnail: String="android.resource://ua.com.anyapps.kt_pirates_notes/drawable/im_note",
-    @PrimaryKey(autoGenerate = false) val id: Int? = null)
-{
-    companion object{
-    const val TABLE_NAME = "notes"
-}}
+    val thumbnail: String = "android.resource://ua.com.anyapps.kt_pirates_notes/drawable/im_note",
+    @PrimaryKey(autoGenerate = false) val id: Int? = null
+) {
+    companion object {
+        const val TABLE_NAME = "notes"
+    }
+}

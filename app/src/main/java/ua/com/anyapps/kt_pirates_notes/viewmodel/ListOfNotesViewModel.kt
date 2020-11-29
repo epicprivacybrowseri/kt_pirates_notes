@@ -6,7 +6,8 @@ import ua.com.anyapps.kt_pirates_notes.model.NoteModel
 import ua.com.anyapps.kt_pirates_notes.repository.Repository
 import ua.com.anyapps.kt_pirates_notes.repository.RepositoryImpl
 
-class ListOfNotesViewModel(): ViewModel(){
+class ListOfNotesViewModel() : ViewModel() {
+
     private val repository: Repository = RepositoryImpl()
 
     fun getNoteListObservable(): LiveData<List<NoteModel>> {

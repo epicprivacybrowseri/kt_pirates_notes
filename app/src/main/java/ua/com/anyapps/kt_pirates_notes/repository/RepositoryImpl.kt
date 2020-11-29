@@ -2,47 +2,46 @@ package ua.com.anyapps.kt_pirates_notes.repository
 
 import android.content.Context
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import ua.com.anyapps.kt_pirates_notes.di.App
 import ua.com.anyapps.kt_pirates_notes.model.NoteModel
-import ua.com.anyapps.kt_pirates_notes.room.model.NoteEntity
 import ua.com.anyapps.kt_pirates_notes.room.AppDatabase
+import ua.com.anyapps.kt_pirates_notes.room.model.NoteEntity
 import ua.com.anyapps.kt_pirates_notes.utils.TAG
 import javax.inject.Inject
 
+class RepositoryImpl() : Repository {
+    @Inject
+    lateinit var appDatabase: AppDatabase
+    @Inject
+    lateinit var context: Context
 
-class RepositoryImpl(): Repository{
-    @Inject lateinit var appDatabase: AppDatabase
-    @Inject lateinit var context: Context
-    init{
+    init {
         App.applicationComponent.inject(this)
     }
 
-    override  fun getById(id: String): NoteEntity {
+    override fun getById(id: String): MutableLiveData<NoteModel> {
+        val mutableLiveData = MutableLiveData<NoteModel>()123
+        
         val note: NoteEntity = NoteEntity("Title1", "Text1")
-        return note
+        return mutableLiveData
     }
 
-    override  suspend fun insert(note: NoteEntity) {
+    override suspend fun insert(note: NoteEntity) {
         appDatabase.noteDAO().insert(note)
     }
 
-    override  fun getAll(): MutableLiveData<List<NoteModel>> {
+    override fun getAll(): MutableLiveData<List<NoteModel>> {
         val mutableLiveData = MutableLiveData<List<NoteModel>>().apply { value = emptyList() }
         appDatabase.noteDAO().getAllNotes()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ notesList ->
-                    mutableLiveData.value = transform(notesList)
-                    Log.d(TAG, "getAll(): ${notesList.size}")
-                }, { t: Throwable? -> t?.printStackTrace() })
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ notesList ->
+                mutableLiveData.value = transform(notesList)
+                Log.d(TAG, "getAll(): ${notesList.size}")
+            }, { t: Throwable? -> t?.printStackTrace() })
         return mutableLiveData
     }
 

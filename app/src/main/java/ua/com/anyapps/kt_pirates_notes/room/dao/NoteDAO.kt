@@ -8,7 +8,7 @@ import ua.com.anyapps.kt_pirates_notes.room.model.NoteEntity
 @Dao
 interface NoteDAO {
     @Query("SELECT * FROM ${NoteEntity.TABLE_NAME} WHERE id = :id")
-    fun getById(id: String): LiveData<NoteEntity>
+    fun getById(id: String): Flowable<NoteEntity>
 
     @Query("SELECT * FROM ${NoteEntity.TABLE_NAME} ORDER BY id DESC")
     fun getAllNotes(): Flowable<List<NoteEntity>>
