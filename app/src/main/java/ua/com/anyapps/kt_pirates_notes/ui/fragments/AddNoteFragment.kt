@@ -1,4 +1,4 @@
-package ua.com.anyapps.kt_pirates_notes.view.fragments
+package ua.com.anyapps.kt_pirates_notes.ui.fragments
 
 import android.app.Activity
 import android.os.Bundle
@@ -15,7 +15,8 @@ import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_add_note.*
 import kotlinx.android.synthetic.main.fragment_add_note.view.*
 import ua.com.anyapps.kt_pirates_notes.R
-import ua.com.anyapps.kt_pirates_notes.model.Note
+import ua.com.anyapps.kt_pirates_notes.room.model.NoteEntity
+import ua.com.anyapps.kt_pirates_notes.utils.TAG
 import ua.com.anyapps.kt_pirates_notes.viewmodel.AddNoteViewModel
 
 
@@ -33,8 +34,6 @@ class AddNoteFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-
-    val TAG: String = "debapp"
 
     private lateinit var addNoteViewModel: AddNoteViewModel
 
@@ -74,7 +73,7 @@ class AddNoteFragment : Fragment() {
 
         beforeSaving()
 
-        addNoteViewModel.btnSaveNoteClicked(Note(title, text))
+        addNoteViewModel.btnSaveNoteClicked(NoteEntity(title, text))
         findNavController().navigate(R.id.listOfNotesFragment)
 
 

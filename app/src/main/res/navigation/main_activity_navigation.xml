@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/listOfNotesFragment"
-        android:name="ua.com.anyapps.kt_pirates_notes.view.fragments.ListOfNotesFragment"
+        android:name="ua.com.anyapps.kt_pirates_notes.ui.fragments.ListOfNotesFragment"
         android:label="fragment_list_of_notes"
         tools:layout="@layout/fragment_list_of_notes" >
         <argument
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/addNoteFragment"
-        android:name="ua.com.anyapps.kt_pirates_notes.view.fragments.AddNoteFragment"
+        android:name="ua.com.anyapps.kt_pirates_notes.ui.fragments.AddNoteFragment"
         android:label="fragment_add_note"
         tools:layout="@layout/fragment_add_note" />
 </navigation>

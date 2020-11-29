@@ -4,18 +4,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import ua.com.anyapps.kt_pirates_notes.model.Note
-import ua.com.anyapps.kt_pirates_notes.repository.Repository
+import ua.com.anyapps.kt_pirates_notes.room.model.NoteEntity
+import ua.com.anyapps.kt_pirates_notes.repository.RepositoryImpl
 
 class AddNoteViewModel() : ViewModel(){
-    val repository: Repository = Repository()
-    val TAG: String = "debapp"
+    val repository: RepositoryImpl = RepositoryImpl()
 
     private val _onMessageError = MutableLiveData<Any>()
     val onMessageError: LiveData<Any> = _onMessageError
 
-    fun btnSaveNoteClicked(note: Note) = viewModelScope.launch {
+    fun btnSaveNoteClicked(note: NoteEntity) = viewModelScope.launch(Dispatchers.IO) {
         repository.insert(note)
     }
 
