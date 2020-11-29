@@ -5,6 +5,8 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -29,15 +31,23 @@ class RepositoryImpl(): Repository{
     }
 
     override  suspend fun insert(note: NoteEntity) {
-        Log.d(TAG, "INSERTED ${note.title} ${note.text}" )
         appDatabase.noteDAO().insert(note)
     }
 
-    override  fun getAll(): LiveData<List<NoteEntity>> {
+    override  fun getAll(): MutableLiveData<List<NoteModel>> {
+        val mutableLiveData = MutableLiveData<List<NoteModel>>().apply { value = emptyList() }
+        appDatabase.noteDAO().getAllNotes()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ notesList ->
+                    mutableLiveData.value = transform(notesList)
+                    Log.d(TAG, "getAll(): ${notesList.size}")
+                }, { t: Throwable? -> t?.printStackTrace() })
+        return mutableLiveData
+    }
 
-        //appDatabase.noteDAO().getAll().observe(this, sfsdf)
-        //возвращать модель
-        return appDatabase.noteDAO().getAll()
+    private fun transform(notes: List<NoteEntity>) = mutableListOf<NoteModel>().apply {
+        notes.forEach { add(NoteModel(it.title, it.text, it.thumbnail, it.id!!)) }
     }
 }
 

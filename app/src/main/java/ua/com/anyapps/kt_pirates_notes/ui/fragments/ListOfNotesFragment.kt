@@ -19,12 +19,12 @@ import ua.com.anyapps.kt_pirates_notes.viewmodel.ListOfNotesViewModel
 
 class ListOfNotesFragment : Fragment(), CellClickListener {
 
-    private val showNotes = Observer<List<NoteModel>> {
-        adapter.setList(it)
-    }
-
     private lateinit var listOfNotesViewModel: ListOfNotesViewModel
     private lateinit var adapter: ListOfNotesAdapter
+
+    private val noteListObserver = Observer<List<NoteModel>> {
+        adapter.update(it)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,8 +33,9 @@ class ListOfNotesFragment : Fragment(), CellClickListener {
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         setHasOptionsMenu(true)
         return inflater.inflate(R.layout.fragment_list_of_notes, container, false)
@@ -42,8 +43,9 @@ class ListOfNotesFragment : Fragment(), CellClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initObservers()
+
         setupUI()
+        initObservers()
     }
 
     fun setupUI() {
@@ -58,7 +60,7 @@ class ListOfNotesFragment : Fragment(), CellClickListener {
     }
 
     private fun initObservers() {
-        listOfNotesViewModel.notes.observe(this, showNotes)
+        listOfNotesViewModel.getNoteListObservable().observe(this, noteListObserver)
     }
 
     override fun onCellClickListener(dbId: Int) {
@@ -67,12 +69,6 @@ class ListOfNotesFragment : Fragment(), CellClickListener {
         val bundle = Bundle()
         bundle.putInt("act", dbId)
         findNavController().navigate(R.id.addNoteFragment, bundle)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.d(TAG, "Resume")
-        listOfNotesViewModel.loadNotes()
     }
 }
 

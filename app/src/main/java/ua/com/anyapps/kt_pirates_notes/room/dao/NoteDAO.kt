@@ -2,6 +2,7 @@ package ua.com.anyapps.kt_pirates_notes.room.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import io.reactivex.Flowable
 import ua.com.anyapps.kt_pirates_notes.room.model.NoteEntity
 
 @Dao
@@ -10,7 +11,7 @@ interface NoteDAO {
     fun getById(id: String): LiveData<NoteEntity>
 
     @Query("SELECT * FROM ${NoteEntity.TABLE_NAME} ORDER BY id DESC")
-    fun getAll(): LiveData<List<NoteEntity>>
+    fun getAllNotes(): Flowable<List<NoteEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(noteEntity: NoteEntity)

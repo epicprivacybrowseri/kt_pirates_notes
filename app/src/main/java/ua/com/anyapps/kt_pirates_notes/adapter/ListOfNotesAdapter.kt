@@ -35,23 +35,10 @@ class ListOfNotesAdapter(private val cellClickListener: CellClickListener) :
         return itemList.size
     }
 
-    fun setList(data: List<NoteModel>){
-        //itemList = data
-        val notesList: List<NoteModel> = arrayListOf(
-                NoteModel("t1", "t1", "android.resource://ua.com.anyapps.kt_pirates_notes/drawable/im_note", 1),
-                NoteModel("t2", "t2", "android.resource://ua.com.anyapps.kt_pirates_notes/drawable/im_note", 2),
-                NoteModel("t3", "t3", "android.resource://ua.com.anyapps.kt_pirates_notes/drawable/im_note", 3),
-                NoteModel("t4", "t4", "android.resource://ua.com.anyapps.kt_pirates_notes/drawable/im_note", 4),
-                NoteModel("t5", "t5", "android.resource://ua.com.anyapps.kt_pirates_notes/drawable/im_note", 5)
-        )
-        itemList = notesList
-        notifyDataSetChanged()
-    }
-
-    /*fun update(data: List<Note>) {
+    fun update(data: List<NoteModel>){
         itemList = data
         notifyDataSetChanged()
-    }*/
+    }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val tvTitle: TextView = view.tvTitle
