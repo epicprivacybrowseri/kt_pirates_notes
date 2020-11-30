@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import dagger.Module
 import dagger.Provides
+import ua.com.anyapps.kt_pirates_notes.repository.NoteRepositoryImpl
 import ua.com.anyapps.kt_pirates_notes.room.AppDatabase
 import javax.inject.Singleton
 

@@ -46,12 +46,6 @@ class ListOfNotesFragment : Fragment(), CellClickListener {
 
         setupUI()
         initObservers()
-
-
-
-        listOfNotesViewModel.getNoteById().observe(viewLifecycleOwner, Observer {
-            Log.d(TAG, "Get by id ${it.title}")
-        })
     }
 
     fun setupUI() {

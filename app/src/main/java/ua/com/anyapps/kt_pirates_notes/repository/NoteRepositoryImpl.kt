@@ -46,7 +46,7 @@ class NoteRepositoryImpl() : NoteRepository {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ notesList ->
-                mutableLiveData.value = NoteModel.ModelMapper.entityToModelList(notesList)
+                mutableLiveData.value = NoteModel.ModelMapper.listOfEntitiesToModelList(notesList)
                 Log.d(TAG, "getAll(): ${notesList.size}")
             }, { t: Throwable? -> t?.printStackTrace() })
         return mutableLiveData

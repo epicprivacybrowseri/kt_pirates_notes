@@ -12,7 +12,7 @@ data class NoteModel(
         fun entityToModel(source: NoteEntity) =
             NoteModel(source.title, source.text, source.thumbnail, source.id!!)
 
-        fun entityToModelList(source: List<NoteEntity>)= mutableListOf<NoteModel>().apply {
+        fun listOfEntitiesToModelList(source: List<NoteEntity>)= mutableListOf<NoteModel>().apply {
             source.forEach {
                 add(NoteModel(it.title, it.text, it.thumbnail, it.id!!))
             }

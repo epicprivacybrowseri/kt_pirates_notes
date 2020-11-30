@@ -4,6 +4,7 @@ import dagger.Component
 import ua.com.anyapps.kt_pirates_notes.di.module.AppModule
 import ua.com.anyapps.kt_pirates_notes.di.module.RoomModule
 import ua.com.anyapps.kt_pirates_notes.repository.NoteRepositoryImpl
+import ua.com.anyapps.kt_pirates_notes.viewmodel.ListOfNotesViewModel
 import javax.inject.Singleton
 
 @Singleton
