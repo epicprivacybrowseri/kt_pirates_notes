@@ -3,7 +3,7 @@ package ua.com.anyapps.kt_pirates_notes.di.component
 import dagger.Component
 import ua.com.anyapps.kt_pirates_notes.di.module.AppModule
 import ua.com.anyapps.kt_pirates_notes.di.module.RoomModule
-import ua.com.anyapps.kt_pirates_notes.repository.RepositoryImpl
+import ua.com.anyapps.kt_pirates_notes.repository.NoteRepositoryImpl
 import javax.inject.Singleton
 
 @Singleton
@@ -13,5 +13,5 @@ import javax.inject.Singleton
     )
 )
 interface ApplicationComponent {
-    fun inject(into: RepositoryImpl)
+    fun inject(into: NoteRepositoryImpl)
 }
