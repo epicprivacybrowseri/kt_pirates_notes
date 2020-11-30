@@ -9,10 +9,10 @@ data class NoteModel(
     val id: Int
 ){
     object ModelMapper {
-        fun from(source: NoteEntity) =
+        fun entityToModel(source: NoteEntity) =
             NoteModel(source.title, source.text, source.thumbnail, source.id!!)
 
-        fun fromList(source: List<NoteEntity>)= mutableListOf<NoteModel>().apply {
+        fun entityToModelList(source: List<NoteEntity>)= mutableListOf<NoteModel>().apply {
             source.forEach {
                 add(NoteModel(it.title, it.text, it.thumbnail, it.id!!))
             }

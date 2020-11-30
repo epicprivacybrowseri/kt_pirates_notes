@@ -13,8 +13,10 @@ import ua.com.anyapps.kt_pirates_notes.utils.TAG
 import javax.inject.Inject
 
 class NoteRepositoryImpl() : NoteRepository {
+
     @Inject
     lateinit var appDatabase: AppDatabase
+
     @Inject
     lateinit var context: Context
 
@@ -24,25 +26,15 @@ class NoteRepositoryImpl() : NoteRepository {
 
     override fun getById(id: String): MutableLiveData<NoteModel> {
         val mutableLiveData = MutableLiveData<NoteModel>()
-        
-        //val note: NoteModel = NoteModel("Title1", "Text1", "android.resource://ua.com.anyapps.kt_pirates_notes/drawable/im_note", 1)
-        //mutableLiveData.value = note
 
         appDatabase.noteDAO().getById(id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ note ->
-                mutableLiveData.value = NoteModel.ModelMapper.from(note)
-                //mutableLiveData.value = transform(note)
-                Log.d(TAG, "get note by id(): ${note}")
+                mutableLiveData.value = NoteModel.ModelMapper.entityToModel(note)
             }, { t: Throwable? -> t?.printStackTrace() })
         return mutableLiveData
     }
-
-    /*private fun transform(note: NoteEntity) = NoteModel(
-        note.title, note.text,
-        note.thumbnail, note.id!!
-    )*/
 
     override suspend fun insert(note: NoteEntity) {
         appDatabase.noteDAO().insert(note)
@@ -54,15 +46,10 @@ class NoteRepositoryImpl() : NoteRepository {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ notesList ->
-                mutableLiveData.value = NoteModel.ModelMapper.fromList(notesList)
-                //mutableLiveData.value = transform(notesList)
+                mutableLiveData.value = NoteModel.ModelMapper.entityToModelList(notesList)
                 Log.d(TAG, "getAll(): ${notesList.size}")
             }, { t: Throwable? -> t?.printStackTrace() })
         return mutableLiveData
     }
-
-    /*private fun transform(notes: List<NoteEntity>) = mutableListOf<NoteModel>().apply {
-        notes.forEach { add(NoteModel(it.title, it.text, it.thumbnail, it.id!!)) }
-    }*/
 }
 
