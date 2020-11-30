@@ -1,6 +1,5 @@
 package ua.com.anyapps.kt_pirates_notes.room.dao
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import io.reactivex.Flowable
 import ua.com.anyapps.kt_pirates_notes.room.model.NoteEntity

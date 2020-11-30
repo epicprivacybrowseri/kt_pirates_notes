@@ -13,4 +13,8 @@ class ListOfNotesViewModel() : ViewModel() {
     fun getNoteListObservable(): LiveData<List<NoteModel>> {
         return repository.getAll()
     }
+
+    fun getNoteById(): LiveData<NoteModel>{
+        return repository.getById("1")
+    }
 }

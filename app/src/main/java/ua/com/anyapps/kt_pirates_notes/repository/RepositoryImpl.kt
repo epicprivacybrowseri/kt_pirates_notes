@@ -23,9 +23,11 @@ class RepositoryImpl() : Repository {
     }
 
     override fun getById(id: String): MutableLiveData<NoteModel> {
-        val mutableLiveData = MutableLiveData<NoteModel>()123
+        val mutableLiveData = MutableLiveData<NoteModel>()
         
-        val note: NoteEntity = NoteEntity("Title1", "Text1")
+        val note: NoteModel = NoteModel("Title1", "Text1", "android.resource://ua.com.anyapps.kt_pirates_notes/drawable/im_note", 1)
+        mutableLiveData.value = note
+
         return mutableLiveData
     }
 
